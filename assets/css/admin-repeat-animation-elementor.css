@@ -1,0 +1,84 @@
+.admin_siva_options_page_logo{
+	
+	float:left;
+	width:100px;
+	height:100px;
+	border-radius:70px;
+	border-width:5px;
+	border-style:solid;
+	border-color:orange;
+	transition: transform .2s;
+}
+
+.admin_siva_options_page_logo:hover{
+	
+	transform: scale(1.2);
+}
+
+
+.clear_input_fields_siva{
+	background-color:white;
+	border-color:red;
+	color:red;
+	border-width:5px;
+	border-style:solid;
+	border-radius:5px;
+	font-size:18px;
+	font-weight:bold;
+	transition: transform .2s;
+	
+	
+}
+
+.clear_input_fields_siva:hover{
+	transform: scale(1.05);
+	
+}
+
+.siva_spacing_fields_margin_left{
+	
+	margin-left:5px;
+}
+
+
+.admin_promo_message{
+	
+	background-color:black;
+	border-color:orange;
+	border-style:solid;
+	border-width:3px;
+	color:orange;
+	border-radius:5px;
+	font-size:20px;
+	transition: transform .2s;
+	
+}
+
+
+
+
+
+.admin_promo_message:hover{
+	
+	transform: scale(1.05);
+	
+}
+
+
+.admin_promo_section_dismiss{
+	
+	color:red;
+	background:white;
+	border-color:red;
+	border-style:solid;
+	border-width:3px;
+	border-radius:5px;
+	font-size:20px;
+	transition: transform .2s;
+	
+}
+
+
+.admin_promo_section_dismiss:hover{
+	transform: scale(1.2);
+}
