@@ -55,21 +55,25 @@ function repeat_animation_elementor_options_page()
         
 
    	    
+		 $options = get_option( 'dropdown_settings_'.strval($count_option) );
+	     $temp_select_name = 'dropdown_settings_'.strval($count_option).'[month]';
+		
 		echo '<table>';
-		echo '<tr valign="top" halign = "left"><h3><b>Locked Down Content '.$count_option.'</b></h3>';
+		echo '<tr valign="top" halign = "left"><h3 class="bar_title-label"><b>Elementor Repeat Animation Content '.$count_option.'</b></h3>';
 
 		
 		
 		
 		echo '<th><div><label for="repeat_animation_elementor_option_id_'.strval($count_option).'"><b>Enter css element class or id</label></b><input type="text" id="repeat_animation_elementor_option_id_'.strval($count_option).'"  name="repeat_animation_elementor_option_id_'.strval($count_option).'" value="' . get_option('repeat_animation_elementor_option_id_'.strval($count_option)).'" /></div></th>';
 
-		echo '<th><div><label for="repeat_animation_elementor_option_name_'.strval($count_option).'"><b>Enter Password</label></b><input type="text" id="repeat_animation_elementor_option_name_'.strval($count_option).'"  name="repeat_animation_elementor_option_name_'.strval($count_option).'" value="' . get_option('repeat_animation_elementor_option_name_'.strval($count_option)).' " /></div></th>';
+		echo '<th><div><label for="repeat_animation_elementor_option_name_'.strval($count_option).'"><b>Enter Details</label></b><input type="text" id="repeat_animation_elementor_option_name_'.strval($count_option).'"  name="repeat_animation_elementor_option_name_'.strval($count_option).'" value="' . get_option('repeat_animation_elementor_option_name_'.strval($count_option)).' " /></div></th>';
 
 		
 
         echo '<th><div><label for="repeat_animation_elementor_option_image_link_'.strval($count_option).'"><b>Enter Company Logo URL</label></b><input type="text" id="repeat_animation_elementor_option_name_'.strval($count_option).'"  name="repeat_animation_elementor_option_image_link_'.strval($count_option).'" value="' . get_option('repeat_animation_elementor_option_image_link_'.strval($count_option)).' " /></div></th>';
 
 
+        echo '<td><div><label><b>Month</b></label>'.Dropdown_select_field_render($count_option,$options,$temp_select_name).'</div></td>';
 		
 
         echo '</tr>';
@@ -143,12 +147,18 @@ function repeat_animation_elementor_register_settings() {
    {
    	    $args = array ('count'=>$count_option,'class_siva'=>"demo-checkbox_".strval($count_option));
    	    add_settings_section("repeat_animation_elementor_options_group", null, null, "demo_".strval($count_option));
-		add_option( 'repeat_animation_elementor_option_name_'.strval($count_option), 'Enter Class Elements ' .strval($count_option));
+		add_option( 'repeat_animation_elementor_option_name_'.strval($count_option), 'Enter Details ' .strval($count_option));
 		register_setting( 'repeat_animation_elementor_options_group','repeat_animation_elementor_option_name_'.strval($count_option), 'repeat_animation_elementor_callback' );
-		add_option( 'repeat_animation_elementor_option_id_'.strval($count_option), 'Enter Password '.strval($count_option));
+		add_option( 'repeat_animation_elementor_option_id_'.strval($count_option), 'Enter Class Elements '.strval($count_option));
 		register_setting( 'repeat_animation_elementor_options_group','repeat_animation_elementor_option_id_'.strval($count_option), 'repeat_animation_elementor_callback' );
 		add_option( 'repeat_animation_elementor_option_image_link_'.strval($count_option), 'Enter Logo URL '.strval($count_option));
 		register_setting( 'repeat_animation_elementor_options_group','repeat_animation_elementor_option_image_link_'.strval($count_option), 'repeat_animation_elementor_callback' );
+
+		add_settings_field('month',__( 'Settings field description', 'dropdown' ),'Dropdown_select_field_render','repeat_animation_elementor_options_page','repeat_animation_elementor_options_group');
+        register_setting( 'repeat_animation_elementor_options_group', 'dropdown_settings_'.strval($count_option) );
+		
+		//add_settings_field('day',__( 'Settings field description', 'dropdown' ),'Dropdown_select_field_render_day','repeat_animation_elementor_options_page','repeat_animation_elementor_options_group');
+       // register_setting( 'repeat_animation_elementor_options_group', 'dropdown_settings_day_'.strval($count_option) );
 		
 		
 		
@@ -192,14 +202,14 @@ function repeat_animation_elementor_scripts() {
 	wp_register_style( 'style_repeat_animation_elementor', plugins_url( '/assets/css/repeat-animation-elementor.css', __FILE__ ));
     wp_enqueue_style( 'style_repeat_animation_elementor' );
 
-    wp_register_style( 'style_repeat_animation_elementor_animate_css_mod', plugins_url( '/assets/css/modified-animate-repeat.css', __FILE__ ));
-    wp_enqueue_style( 'style_repeat_animation_elementor_animate_css_mod' );
+    //wp_register_style( 'style_repeat_animation_elementor_animate_css_mod', plugins_url( '/assets/css/modified-animate-repeat.css', __FILE__ ));
+   // wp_enqueue_style( 'style_repeat_animation_elementor_animate_css_mod' );
 	
     wp_localize_script('script_repeat_animation_elementor', 'scriptParams_repeat_animation_elementor', $script_params_repeat_animation_elementor);
     wp_enqueue_script('script_repeat_animation_elementor');
 
-  //  wp_register_style( 'style_repeat_animation_elementor_animate_css', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css' );
-  //  wp_enqueue_style('style_repeat_animation_elementor_animate_css');
+    wp_register_style( 'style_repeat_animation_elementor_animate_css', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css' );
+    wp_enqueue_style('style_repeat_animation_elementor_animate_css');
 
        
 
@@ -234,6 +244,59 @@ function admin_repeat_animation_elementor_js_siva(){
 	
 }
 
+
+function Dropdown_select_field_render($count_option,$options,$temp_select_name) { 
+    //$count_option = $args["count"];
+    //$options = get_option( 'dropdown_settings_'.strval($count_option) );
+	//$temp_select_name = 'dropdown_settings_'.strval($count_option).'[select_field_0]';
+    ?><label>Dissapear On</label>
+    <select name=<?php echo $temp_select_name ?>>
+        <option value='January' <?php selected( $options['month'], 'January' ); ?>>January</option>
+        <option value='February' <?php selected( $options['month'], 'February' ); ?>>February</option>
+        <option value='March' <?php selected( $options['month'], 'March' ); ?>>March</option>
+        <option value='April' <?php selected( $options['month'], 'April' ); ?>>April</option>
+		<option value='May' <?php selected( $options['month'], 'May' ); ?>>May</option>
+        <option value='June' <?php selected( $options['month'], 'June' ); ?>>June</option>
+        <option value='July' <?php selected( $options['month'], 'July' ); ?>>July</option>
+        <option value='August' <?php selected( $options['month'], 'August' ); ?>>August</option>
+		<option value='September' <?php selected( $options['month'], 'September' ); ?>>September</option>
+        <option value='October' <?php selected( $options['month'], 'October' ); ?>>October</option>
+        <option value='November' <?php selected( $options['month'], 'November' ); ?>>November</option>
+        <option value='December' <?php selected( $options['month'], 'December' ); ?>>December</option>
+    </select>
+<?php
+}
+
+
+function Dropdown_select_field_render_day($count_option) { 
+     //$count_option = $args["count"];
+     $options = get_option( 'dropdown_settings_day_'.strval($count_option) );
+	 $temp_select_name_day = 'dropdown_settings_day_'.strval($count_option).'[day]';
+    ?><label>Dissapear On</label>
+    <select name=<?php echo $temp_select_name_day ?>>
+	
+	<option value='1' <?php selected( $options['day'], 1 ); ?>>Day 1</option>
+    <option value='2' <?php selected( $options['day'], 2 ); ?>>Day 2</option>
+    <option value='3' <?php selected( $options['day'], 3 ); ?>>Day 3</option>
+    <option value='4' <?php selected( $options['day'], 4 ); ?>>Day 4</option>
+      
+    </select>
+<?php
+}
+
+
+
+function Dropdown_settings_section_callback(  ) { 
+    echo __( 'This section description', 'dropdown' );
+}
+
+
+function Dropdown_settings_init(  ) { 
+	add_settings_section('timed_content_options_group',null,null,'timed_content_options_page');
+    add_settings_field('select_field_0',__( 'Settings field description', 'dropdown' ),'Dropdown_select_field_render','timed_content_options_page','timed_content_options_group');
+    register_setting( 'timed_content_options_group', 'dropdown_settings' );
+    
+}
 
 
 

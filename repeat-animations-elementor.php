@@ -89,7 +89,7 @@ class Repeat_Animation_Elementor {
 			return;
 		}
 		
-		add_action( 'elementor/elements/categories_registered', array($this,'add_rea_elementor_widget_categories'));
+		//add_action( 'elementor/elements/categories_registered', array($this,'add_rea_elementor_widget_categories'));
 		add_action( 'admin_init', 'repeat_animation_elementor_register_settings' );
 		add_action('admin_menu', array($this,'repeat_animation_elementor_register_options_page'));
 		add_action( 'admin_notices', 'repeat_animation_elementor_admin_mesage' );
@@ -103,12 +103,15 @@ class Repeat_Animation_Elementor {
 				
 						}
 						
-		add_action( 'elementor/element/section/section_layout/after_section_end', array( $this, 'RegisterSectionControls1' ), 10, 2 );
+		//add_action( 'elementor/element/section/section_layout/after_section_end', array( $this, 'RegisterSectionControls1' ), 10, 2 );
+
 				
 		// Once we get here, We have passed all validation checks so we can safely include our plugin
 		//require_once( 'plugin.php' );
 		require_once( 'repeat-animations-elementor-options-page.php' );
-	    require_once('repeat-animations-widgets-registered.php');
+	   // require_once('repeat-animations-widgets-registered.php');
+
+		add_action( 'admin_init', 'Dropdown_settings_init' );
 		
 	}
 	

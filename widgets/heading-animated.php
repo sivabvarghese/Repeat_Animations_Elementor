@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  *
  * @since 1.0.0
  */
-class Word_Cloud extends Widget_Base {
+class ERA_Heading_Animated extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -28,7 +28,7 @@ class Word_Cloud extends Widget_Base {
 
 	
 	public function get_name() {
-		return 'word-cloud';
+		return 'heading-animated';
 	}
  
 
@@ -53,7 +53,7 @@ class Word_Cloud extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Text Editor Animated', 'repeat-animation-elementor' );
+		return __( 'Heading Animated', 'repeat-animation-elementor' );
 	}
 
 	/**
@@ -66,7 +66,7 @@ class Word_Cloud extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'fas fa-cloud';
+		return 'fas fa-heading';
 	}
 
 	/**
@@ -113,21 +113,70 @@ class Word_Cloud extends Widget_Base {
 	 */
 	protected function _register_controls() {
 		$this->start_controls_section(
-			'section_content',
+			'section_heading_animated_content',
 			[
 				'label' => __( 'Content', 'repeat-animation-elementor' ),
 			]
 		);
 
-	$this->add_control(
-			'text_for_wordcloud',
+		$this->add_control(
+			'text_for_heading',
 			[
-				'label' => __( 'Description', 'repeat-animation-elementor' ),
-				'type' => \Elementor\Controls_Manager::WYSIWYG,
-				'default' => __( 'Default description', 'repeat-animation-elementor' ),
-				'placeholder' => __( 'Type your description here', 'repeat-animation-elementor' ),
+				'label' => __( 'Heading', 'repeat-animation-elementor' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( '', 'repeat-animation-elementor' ),
+				'placeholder' => __( 'Text For Animated Heading', 'repeat-animation-elementor' ),
 			]
 		);
+		
+		$this->add_control(
+			'era_heading_website_link',
+			[
+				'label' => __( 'Link', 'repeat-animation-elementor' ),
+				'type' => \Elementor\Controls_Manager::URL,
+				'placeholder' => __( 'https://your-link.com', 'repeat-animation-elementor' ),
+				'show_external' => true,
+				'default' => [
+					'url' => '',
+					'is_external' => true,
+					'nofollow' => true,
+				],
+			]
+		);
+		
+		
+		$this->add_responsive_control(
+			'era_heading_content_align',
+			[
+				'label' => __( 'Alignment', 'repeat-animation-elementor' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'repeat-animation-elementor' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'repeat-animation-elementor' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'repeat-animation-elementor' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'devices' => [ 'desktop', 'tablet' ],
+				'prefix_class' => 'era-content-align-%s',
+				'selectors' => [
+					'{{WRAPPER}}' => 'text-align: %s',
+					
+				],
+			]
+		);
+		
+		
+		
+
+		
 		
 		
 		
@@ -139,7 +188,7 @@ class Word_Cloud extends Widget_Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'section_style',
+			'section_heading_animated_style',
 			[
 				'label' => __( 'Style', 'repeat-animation-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -152,7 +201,7 @@ class Word_Cloud extends Widget_Base {
 				'name' => 'content_typography',
 				'label' => __( 'Typography', 'repeat-animation-elementor' ),
 				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} .word_cloud_description',
+				'selector' => '{{WRAPPER}} .heading_animated_text',
 			]
 		);
 
@@ -166,12 +215,48 @@ class Word_Cloud extends Widget_Base {
 					'value' => \Elementor\Scheme_Color::COLOR_1,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .word_cloud_description' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .heading_animated_text' => 'color: {{VALUE}}',
 					
 				],
 			]
 		);
 		
+		$this->add_group_control(
+			\Elementor\Group_Control_Text_Shadow::get_type(),
+			[
+				'name' => 'text_shadow',
+				'label' => __( 'Text Shadow', 'repeat-animation-elementor' ),
+				'selector' => '{{WRAPPER}} .era_heading_animated_wrapper',
+			]
+		);
+		
+		$this->add_control(
+				'blend_mode',
+						[
+							'label' => __('Blend Mode', 'rehomes-core'),
+							'type' => Controls_Manager::SELECT,
+							'options' => [
+										'' => __('Normal', 'rehomes-core'),
+										'multiply' => 'Multiply',
+										'screen' => 'Screen',
+										'overlay' => 'Overlay',
+										'darken' => 'Darken',
+										'lighten' => 'Lighten',
+										'color-dodge' => 'Color Dodge',
+										'saturation' => 'Saturation',
+										'color' => 'Color',
+										'difference' => 'Difference',
+										'exclusion' => 'Exclusion',
+										'hue' => 'Hue',
+										'luminosity' => 'Luminosity',
+										],
+							'selectors' => [
+												'{{WRAPPER}} .elementor-heading-title' => 'mix-blend-mode: {{VALUE}}',
+											],
+										'separator' => 'none',
+						]
+							);
+
 		
 		
 		
@@ -203,11 +288,11 @@ class Word_Cloud extends Widget_Base {
 		$this->add_control(
 			'transparent',
 			[
-				'label' => __( 'Bounce Animation', 'repeat-animation-elementor' ),
+				'label' => __( 'Pulse Animation', 'repeat-animation-elementor' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
 				'label_on' => __( 'On', 'repeat-animation-elementor' ),
 				'label_off' => __( 'Off', 'repeat-animation-elementor' ),
-				'return_value' => ' bounce forever',
+				'return_value' => ' pulse forever',
 				'default' => '',
 				'frontend_available' => true,
 				'prefix_class'  => 'animated',
@@ -233,13 +318,18 @@ class Word_Cloud extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+
+		$target = $settings['era_heading_website_link']['is_external'] ? ' target="_blank"' : '';
+		$nofollow = $settings['era_heading_website_link']['nofollow'] ? ' rel="nofollow"' : '';
 		
 		
+		echo '<div class="era_heading_animated_wrapper">';
 		
-		echo '<div class= "word_cloud_description">';
-		echo "<p>";
-		echo $settings['text_for_wordcloud'];
-		echo "</p>";
+		echo '<a href="' . $settings['era_heading_website_link']['url'] . '"' . $target . $nofollow . '>';
+		echo "<h2 class = 'heading_animated_text'>";
+		echo $settings['text_for_heading'];
+		echo "</h2>";
+		echo '</a>';
 		echo '</div>';
 	
 		
@@ -261,9 +351,12 @@ class Word_Cloud extends Widget_Base {
 	protected function _content_template() {
         
 		?>
-		
-		<div class="word_cloud_description">
-		 <p >{{{settings.text_for_wordcloud}}}</p>
+		<#
+		var target = settings.era_heading_website_link.is_external ? ' target="_blank"' : '';
+		var nofollow = settings.era_heading_website_link.nofollow ? ' rel="nofollow"' : '';
+		#>
+		<div class="era_heading_animated_wrapper">
+		 <a href="{{ settings.era_heading_website_link.url }}"{{ target }}{{ nofollow }}><h2 >{{{settings.text_for_heading}}}</h2></a>
 		</div>
 		
 		

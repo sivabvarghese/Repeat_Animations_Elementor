@@ -106,7 +106,9 @@ class Plugin {
 		require_once( __DIR__ . '/widgets/word-cloud.php' );
 		require_once( __DIR__ . '/widgets/neon_text_widget.php' );
 		require_once( __DIR__ . '/widgets/food_widget.php' );*/
-		require_once( __DIR__ . '/widgets/word-cloud.php' );
+		//require_once( __DIR__ . '/widgets/word-cloud.php' );
+		//require_once( __DIR__ . '/widgets/heading-animated.php' );
+		//require_once( __DIR__ . '/widgets/image-animated.php' );
 		
 	}
 
@@ -123,13 +125,10 @@ class Plugin {
 		//$this->includes();
 		$this->include_widgets_files();
 
-		// Register Widgets
-		/*\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Hello_World() );
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Inline_Editing() );
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Word_Cloud() );
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Neon_Widget() );
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\BlueLion_Food_Menus_Widget() );*/
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Word_Cloud() );
+	
+		//\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Word_Cloud() );
+		//\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\ERA_Heading_Animated() );
+		//\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\ERA_Image_Animated() );
 	}
 
 	/**
