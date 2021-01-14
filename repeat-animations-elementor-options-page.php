@@ -329,6 +329,39 @@ function Dropdown_select_field_render($count_option,$options,$temp_select_name) 
 
     ?><label>Select Animation</label>
     <select name=<?php echo $temp_select_name ?>>
+
+      
+    	
+        <option value='bounce' <?php selected( $options['month'], 'bounce' ); ?>>Bounce</option>
+        <option value='flash' <?php selected( $options['month'], 'flash' ); ?>>Flash</option>
+        <option value='pulse' <?php selected( $options['month'], 'pulse' ); ?>>Pulse</option>
+        <option value='rubberBand' <?php selected( $options['month'], 'rubberBand' ); ?>>Rubber Band</option>
+		<option value='shakeX' <?php selected( $options['month'], 'shakeX' ); ?>>Shake X</option>
+        <option value='shakeY' <?php selected( $options['month'], 'shakeY' ); ?>>shake Y</option>
+        <option value='fadeInRightBig' <?php selected( $options['month'], 'fadeInRightBig' ); ?>>Fade In Right Big</option>
+        <option value='headShake' <?php selected( $options['month'], 'headShake' ); ?>>HeadShake</option>
+		<option value='swing' <?php selected( $options['month'], 'swing' ); ?>>Swing</option>
+        <option value='tada' <?php selected( $options['month'], 'tada' ); ?>>Tada</option>
+        <option value='wobble' <?php selected( $options['month'], 'wobble' ); ?>>Wobble</option>
+        <option value='jello' <?php selected( $options['month'], 'jello' ); ?>>Jello</option>
+        <option value='heartBeat' <?php selected( $options['month'], 'heartBeat' ); ?>>Heart Beat</option>
+        <option value='backInDown' <?php selected( $options['month'], 'backInDown' ); ?>>Back In Down</option>
+        <option value='backInLeft' <?php selected( $options['month'], 'backInLeft' ); ?>>Back In Left</option>
+        <option value='backInRight' <?php selected( $options['month'], 'backInRight' ); ?>>Back In Right</option>
+		<option value='backInUp' <?php selected( $options['month'], 'backInUp' ); ?>>Back In Up</option>
+        <option value='backOutDown' <?php selected( $options['month'], 'backOutDown' ); ?>>Back Out Down</option>
+        <option value='backOutLeft' <?php selected( $options['month'], 'backOutLeft' ); ?>>Back Out Left</option>
+        <option value='backOutRight' <?php selected( $options['month'], 'backOutRight' ); ?>>Back Out Right</option>
+		<option value='bounceIn' <?php selected( $options['month'], 'bounceIn' ); ?>>Bounce In</option>
+        <option value='bounceInDown' <?php selected( $options['month'], 'bounceInDown' ); ?>>Bounce In Down</option>
+        <option value='bounceInLeft' <?php selected( $options['month'], 'bounceInLeft' ); ?>>Bounce In Left</option>
+        <option value='bounceInRight' <?php selected( $options['month'], 'bounceInRight' ); ?>>Bounce In Right</option>
+        <option value='bounceInUp' <?php selected( $options['month'], 'bounceInUp' ); ?>>Bounce In Up</option>
+        <option value='bounceOut' <?php selected( $options['month'], 'bounceOut' ); ?>>Bounce Out</option>
+        <option value='bounceOutDown' <?php selected( $options['month'], 'bounceOutDown' ); ?>>Bounce Out Down</option>
+        <option value='bounceOutLeft' <?php selected( $options['month'], 'bounceOutLeft' ); ?>>Bounce Out Left</option>
+        <option value='bounceOutRight' <?php selected( $options['month'], 'bounceOutRight' ); ?>>Bounce Out Right</option>
+        <option value='bounceOutUp' <?php selected( $options['month'], 'bounceOutUp' ); ?>>Bounce Out Up</option>
         <option value='fadeIn' <?php selected( $options['month'], 'fadeIn' ); ?>>Fade In</option>
         <option value='fadeInDown' <?php selected( $options['month'], 'fadeInDown' ); ?>>Fade Down</option>
         <option value='fadeInDownBig' <?php selected( $options['month'], 'fadeInDownBig' ); ?>>Fade In Down Big</option>

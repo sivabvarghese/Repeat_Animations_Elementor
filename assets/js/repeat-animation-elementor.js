@@ -23,17 +23,23 @@ function check_if_element_visible(class_or_id,first_flag,animation_style){
     var bottom_of_element = jQuery(class_or_id).offset().top + jQuery(class_or_id).outerHeight();
     var bottom_of_screen = jQuery(window).scrollTop() + jQuery(window).innerHeight();
     var top_of_screen =jQuery(window).scrollTop();
-
+    
     if ((bottom_of_screen > top_of_element) && (top_of_screen < bottom_of_element)){
 
         //console.log(class_or_id.concat(" is visible"));
         //jQuery(class_or_id).removeClass("fadeOutRight");
+        if(first_flag==0){
         jQuery(class_or_id).addClass("animated ".concat(animation_style));
-       
         first_flag=1;
+        }
+
+       
+        
     } else {
-     
-        jQuery(class_or_id).removeClass(animation_style);
+        if(first_flag==1){
+        jQuery(class_or_id).removeClass("animated ".concat(animation_style));
+        first_flag=0;
+        }
     	//Query(class_or_id).addClass("animated fadeOutRight");
     	
        //console.log(class_or_id.concat(" is not visible"));
