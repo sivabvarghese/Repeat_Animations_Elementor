@@ -2,18 +2,19 @@ console.log(scriptParams_repeat_animation_elementor);
 
 
 var number_of_objects = objectLenght = Object.keys(scriptParams_repeat_animation_elementor).length; 
-for(var i =0;i<=number_of_objects/3;i++){
+for(var i =1;i<=number_of_objects/4;i++){
 
 
 var first_flag=0;
-check_if_element_visible(scriptParams_repeat_animation_elementor["repeat_animation_elementor_option_id_".concat(i)],first_flag);
+check_if_element_visible(scriptParams_repeat_animation_elementor["repeat_animation_elementor_option_id_".concat(i)],first_flag,scriptParams_repeat_animation_elementor["repeat_animation_elementor_option_animation_".concat(i)]["month"]);
 }
 
 
-function check_if_element_visible(class_or_id){
+function check_if_element_visible(class_or_id,first_flag,animation_style){
 
 
     var nav = jQuery(class_or_id);
+    console.log(animation_style);
 
     
 	jQuery(window).scroll(function() {
@@ -25,17 +26,17 @@ function check_if_element_visible(class_or_id){
 
     if ((bottom_of_screen > top_of_element) && (top_of_screen < bottom_of_element)){
 
-        console.log(class_or_id.concat(" is visible"));
+        //console.log(class_or_id.concat(" is visible"));
         //jQuery(class_or_id).removeClass("fadeOutRight");
-        jQuery(class_or_id).addClass("animated fadeInRight");
+        jQuery(class_or_id).addClass("animated ".concat(animation_style));
        
         first_flag=1;
     } else {
      
-        jQuery(class_or_id).removeClass("fadeInRight");
+        jQuery(class_or_id).removeClass(animation_style);
     	//Query(class_or_id).addClass("animated fadeOutRight");
     	
-       console.log(class_or_id.concat(" is not visible"));
+       //console.log(class_or_id.concat(" is not visible"));
     }
     }
 });

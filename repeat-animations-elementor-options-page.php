@@ -73,7 +73,7 @@ function repeat_animation_elementor_options_page()
         echo '<th><div><label for="repeat_animation_elementor_option_image_link_'.strval($count_option).'"><b>Enter Company Logo URL</label></b><input type="text" id="repeat_animation_elementor_option_name_'.strval($count_option).'"  name="repeat_animation_elementor_option_image_link_'.strval($count_option).'" value="' . get_option('repeat_animation_elementor_option_image_link_'.strval($count_option)).' " /></div></th>';
 
 
-        echo '<td><div><label><b>Month</b></label>'.Dropdown_select_field_render($count_option,$options,$temp_select_name).'</div></td>';
+        echo '<td><div>'.Dropdown_select_field_render($count_option,$options,$temp_select_name).'</div></td>';
 		
 
         echo '</tr>';
@@ -184,7 +184,7 @@ function repeat_animation_elementor_scripts() {
 				$script_params_repeat_animation_elementor['repeat_animation_elementor_option_name_'.strval($count_option)] = get_option('repeat_animation_elementor_option_name_'.strval($count_option));
 				$script_params_repeat_animation_elementor['repeat_animation_elementor_option_id_'.strval($count_option)] = get_option('repeat_animation_elementor_option_id_'.strval($count_option));
 				$script_params_repeat_animation_elementor['repeat_animation_elementor_option_image_link_'.strval($count_option)] = get_option('repeat_animation_elementor_option_image_link_'.strval($count_option));
-				
+				$script_params_repeat_animation_elementor['repeat_animation_elementor_option_animation_'.strval($count_option)] = get_option( 'dropdown_settings_'.strval($count_option));
 		
 
 	}
@@ -249,22 +249,158 @@ function Dropdown_select_field_render($count_option,$options,$temp_select_name) 
     //$count_option = $args["count"];
     //$options = get_option( 'dropdown_settings_'.strval($count_option) );
 	//$temp_select_name = 'dropdown_settings_'.strval($count_option).'[select_field_0]';
-    ?><label>Dissapear On</label>
+  /*  $info = array('fadeIn',
+'fadeInDown',
+'fadeInDownBig',
+'fadeInLeft',
+'fadeInLeftBig',
+'fadeInRight',
+'fadeInRightBig',
+'fadeInUp',
+'fadeInUpBig',
+'fadeInTopLeft',
+'fadeInTopRight',
+'fadeInBottomLeft',
+'fadeInBottomRight',
+'fadeOut',
+'fadeOutDown',
+'fadeOutDownBig',
+'fadeOutLeft',
+'fadeOutLeftBig',
+'fadeOutRight',
+'fadeOutRightBig',
+'fadeOutUp',
+'fadeOutUpBig',
+'fadeOutTopLeft',
+'fadeOutTopRight',
+'fadeOutBottomRight',
+'fadeOutBottomLeft',
+'flip',
+'flipInX',
+'flipInY',
+'flipOutX',
+'flipOutY',
+'lightSpeedInRight',
+'lightSpeedInLeft',
+'lightSpeedOutRight',
+'lightSpeedOutLeft',
+'rotateIn',
+'rotateInDownLeft',
+'rotateInDownRight',
+'rotateInUpLeft',
+'rotateInUpRight',
+'rotateOut',
+'rotateOutDownLeft',
+'rotateOutDownRight',
+'rotateOutUpLeft',
+'rotateOutUpRight',
+'hinge',
+'jackInTheBox',
+'rollIn',
+'rollOut',
+'zoomIn',
+'zoomInDown',
+'zoomInLeft',
+'zoomInRight',
+'zoomInUp',
+'zoomOut',
+'zoomOutDown',
+'zoomOutLeft',
+'zoomOutRight',
+'zoomOutUp',
+'slideInDown',
+'slideInLeft',
+'slideInRight',
+'slideInUp',
+'slideOutDown',
+'slideOutLeft',
+'slideOutRight',
+'slideOutUp');
+
+    $html = '<label>Select Animation</label>';
+    $html .= '<select name= '. $temp_select_name.' >';
+
+    for ($count=0;$count<$info.length;$count++){
+
+    	$html .= '<option value=' . $info[$count] . selected( $options['month'], $info[$count] ) . '>'.$info[$count].'</option>';
+    }
+    $html .= '</select>';*/
+
+
+    ?><label>Select Animation</label>
     <select name=<?php echo $temp_select_name ?>>
-        <option value='January' <?php selected( $options['month'], 'January' ); ?>>January</option>
-        <option value='February' <?php selected( $options['month'], 'February' ); ?>>February</option>
-        <option value='March' <?php selected( $options['month'], 'March' ); ?>>March</option>
-        <option value='April' <?php selected( $options['month'], 'April' ); ?>>April</option>
-		<option value='May' <?php selected( $options['month'], 'May' ); ?>>May</option>
-        <option value='June' <?php selected( $options['month'], 'June' ); ?>>June</option>
-        <option value='July' <?php selected( $options['month'], 'July' ); ?>>July</option>
-        <option value='August' <?php selected( $options['month'], 'August' ); ?>>August</option>
-		<option value='September' <?php selected( $options['month'], 'September' ); ?>>September</option>
-        <option value='October' <?php selected( $options['month'], 'October' ); ?>>October</option>
-        <option value='November' <?php selected( $options['month'], 'November' ); ?>>November</option>
-        <option value='December' <?php selected( $options['month'], 'December' ); ?>>December</option>
+        <option value='fadeIn' <?php selected( $options['month'], 'fadeIn' ); ?>>Fade In</option>
+        <option value='fadeInDown' <?php selected( $options['month'], 'fadeInDown' ); ?>>Fade Down</option>
+        <option value='fadeInDownBig' <?php selected( $options['month'], 'fadeInDownBig' ); ?>>Fade In Down Big</option>
+        <option value='fadeInLeft' <?php selected( $options['month'], 'fadeInLeft' ); ?>>Fade In Left</option>
+		<option value='fadeInLeftBig' <?php selected( $options['month'], 'fadeInLeftBig' ); ?>>Fade In Left Big</option>
+        <option value='fadeInRight' <?php selected( $options['month'], 'fadeInRight' ); ?>>Fade In Right</option>
+        <option value='fadeInRightBig' <?php selected( $options['month'], 'fadeInRightBig' ); ?>>Fade In Right Big</option>
+        <option value='fadeInUp' <?php selected( $options['month'], 'fadeInUp' ); ?>>Fade In Up</option>
+		<option value='fadeInUpBig' <?php selected( $options['month'], 'fadeInUpBig' ); ?>>Fade In Up Big</option>
+        <option value='fadeInTopLeft' <?php selected( $options['month'], 'fadeInTopLeft' ); ?>>Fade In Top Left</option>
+        <option value='fadeInTopRight' <?php selected( $options['month'], 'fadeInTopRight' ); ?>>Fade In Top Right</option>
+        <option value='fadeInBottomLeft' <?php selected( $options['month'], 'fadeInBottomLeft' ); ?>>Fade In Bottom Left</option>
+        <option value='fadeInBottomRight' <?php selected( $options['month'], 'fadeInBottomRight' ); ?>>Fade In Bottom Right</option>
+        <option value='fadeOut' <?php selected( $options['month'], 'fadeOut' ); ?>>Fade Out</option>
+        <option value='fadeOutDown' <?php selected( $options['month'], 'fadeOutDown' ); ?>>Fade Out Down</option>
+        <option value='fadeOutDownBig' <?php selected( $options['month'], 'fadeOutDownBig' ); ?>>Fade Out Down Big</option>
+		<option value='fadeOutLeft' <?php selected( $options['month'], 'fadeOutLeft' ); ?>>Fade Out Left</option>
+        <option value='fadeOutLeftBig' <?php selected( $options['month'], 'fadeOutLeftBig' ); ?>>Fade Out Left Big</option>
+        <option value='fadeOutRight' <?php selected( $options['month'], 'fadeOutRight' ); ?>>Fade Out Right</option>
+        <option value='fadeOutRightBig' <?php selected( $options['month'], 'fadeOutRightBig' ); ?>>Fade Out Right Big</option>
+		<option value='fadeOutUp' <?php selected( $options['month'], 'fadeOutUp' ); ?>>Fade Out Up</option>
+        <option value='fadeOutUpBig' <?php selected( $options['month'], 'fadeOutUpBig' ); ?>>Fade Out Up Big</option>
+        <option value='fadeOutTopLeft' <?php selected( $options['month'], 'fadeOutTopLeft' ); ?>>Fade Out Top Left</option>
+        <option value='fadeOutTopRight' <?php selected( $options['month'], 'fadeOutTopRight' ); ?>>Fade Out Top Right</option>
+        <option value='fadeOutBottomRight' <?php selected( $options['month'], 'fadeOutBottomRight' ); ?>>Fade Out Bottom Right</option>
+        <option value='fadeOutBottomLeft' <?php selected( $options['month'], 'fadeOutBottomLeft' ); ?>>Fade Out Bottom Left</option>
+        <option value='flip' <?php selected( $options['month'], 'flip' ); ?>>Flip</option>
+        <option value='flipInX' <?php selected( $options['month'], 'flipInX' ); ?>>Flip In X</option>
+		<option value='flipInY' <?php selected( $options['month'], 'flipInY' ); ?>>Flip In Y</option>
+        <option value='flipOutX' <?php selected( $options['month'], 'flipOutX' ); ?>>Flip Out X</option>
+        <option value='flipOutY' <?php selected( $options['month'], 'flipOutY' ); ?>>Flip Out Y</option>
+        <option value='lightSpeedInRight' <?php selected( $options['month'], 'lightSpeedInRight' ); ?>>Light Speed In Right</option>
+        <option value='lightSpeedInLeft' <?php selected( $options['month'], 'lightSpeedInLeft' ); ?>>Light Speed In Left</option>
+        <option value='lightSpeedOutRight' <?php selected( $options['month'], 'lightSpeedOutRight' ); ?>>Light Speed Out Right</option>
+        <option value='lightSpeedOutLeft' <?php selected( $options['month'], 'lightSpeedOutLeft' ); ?>>Light Speed Out Left</option>
+        <option value='rotateIn' <?php selected( $options['month'], 'rotateIn' ); ?>>Rotate In</option>
+        <option value='rotateInDownLeft' <?php selected( $options['month'], 'rotateInDownLeft' ); ?>>Rotate In Down Left</option>
+        <option value='rotateInDownRight' <?php selected( $options['month'], 'rotateInDownRight' ); ?>>Rotate In Down Right</option>
+        <option value='rotateInUpLeft' <?php selected( $options['month'], 'rotateInUpLeft' ); ?>>Rotate In Up Left</option>
+		<option value='rotateInUpRight' <?php selected( $options['month'], 'rotateInUpRight' ); ?>>Rotate In Up Right</option>
+        <option value='rotateOut' <?php selected( $options['month'], 'rotateOut' ); ?>>Rotate Out</option>
+        <option value='rotateOutDownLeft' <?php selected( $options['month'], 'rotateOutDownLeft' ); ?>>Rotate Out Down Left</option>
+        <option value='rotateOutDownRight' <?php selected( $options['month'], 'rotateOutDownRight' ); ?>>Rotate Out Down Right</option>
+		<option value='rotateOutUpLeft' <?php selected( $options['month'], 'rotateOutUpLeft' ); ?>>Rotate Out Up Left</option>
+        <option value='rotateOutUpRight' <?php selected( $options['month'], 'rotateOutUpRight' ); ?>>Rotate Out Up Right</option>
+        <option value='hinge' <?php selected( $options['month'], 'hinge' ); ?>>Hinge</option>
+        <option value='jackInTheBox' <?php selected( $options['month'], 'jackInTheBox' ); ?>>Jack In The Box</option>
+        <option value='rollIn' <?php selected( $options['month'], 'rollIn' ); ?>>Roll In</option>
+        <option value='rollOut' <?php selected( $options['month'], 'rollOut' ); ?>>Roll Out</option>
+        <option value='zoomIn' <?php selected( $options['month'], 'zoomIn' ); ?>>Zoom In</option>
+        <option value='zoomInDown' <?php selected( $options['month'], 'zoomInDown' ); ?>>Zoom In Down</option>
+		<option value='zoomInLeft' <?php selected( $options['month'], 'zoomInLeft' ); ?>>Zoom In Left</option>
+        <option value='zoomInRight' <?php selected( $options['month'], 'zoomInRight' ); ?>>Zomm in Right</option>
+        <option value='zoomInUp' <?php selected( $options['month'], 'zoomInUp' ); ?>>Zoom In Up</option>
+        <option value='zoomOut' <?php selected( $options['month'], 'zoomOut' ); ?>>Zoom Out</option>
+		<option value='zoomOutDown' <?php selected( $options['month'], 'zoomOutDown' ); ?>>Zoom Out Down</option>
+        <option value='zoomOutLeft' <?php selected( $options['month'], 'zoomOutLeft' ); ?>>Zoom Out Left</option>
+        <option value='zoomOutRight' <?php selected( $options['month'], 'zoomOutRight' ); ?>>Zoom Out Right</option>
+        <option value='zoomOutUp' <?php selected( $options['month'], 'zoomOutUp' ); ?>>Zoom Out Up</option>
+        <option value='slideInDown' <?php selected( $options['month'], 'slideInDown' ); ?>>Slide In Down</option>
+        <option value='slideInLeft' <?php selected( $options['month'], 'slideInLeft' ); ?>>Slide In Left</option>
+        <option value='slideInRight' <?php selected( $options['month'], 'slideInRight' ); ?>>Slide In Right</option>
+        <option value='slideInUp' <?php selected( $options['month'], 'slideInUp' ); ?>>Slide In Up</option>
+		<option value='slideOutDown' <?php selected( $options['month'], 'slideOutDown' ); ?>>Slide Out Down</option>
+        <option value='slideOutLeft' <?php selected( $options['month'], 'slideOutLeft' ); ?>>Slide Out Left</option>
+        <option value='slideOutRight' <?php selected( $options['month'], 'slideOutRight' ); ?>>Slide Out Right</option>
+        <option value='slideOutUp' <?php selected( $options['month'], 'slideOutUp' ); ?>>Slide Out Up</option>
+		
     </select>
 <?php
+
+
 }
 
 
